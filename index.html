@@ -446,10 +446,11 @@
       box.textContent = '';
       // Lời tâm sự — tên khách được ghép ngay sau "Xin chào"
       // {K} = "Minh Khôi" (chữ vàng)
-      const script = ', có lẽ đây sẽ là lần đầu tiên mà chính {K} sẽ có ít tâm sự như thế này. ' +
+      const script = ', '+ 
+        'Có lẽ đây sẽ là lần đầu tiên mà chính {K} sẽ có ít tâm sự như thế này... ' +
         'Trước hết, cảm ơn bạn, vì đã là một mảnh ký ức thanh xuân không thể thiếu của {K} và là một tri kỉ trong hành trình trưởng thành của {K}. ' +
         'Và để có được thành công của {K} ngày hôm nay, không thể nào thiếu đi sự ủng hộ, an ủi từ những người bạn, các bạn iu của {K}. ' +
-        'Nhân dịp sinh nhật 18 tuổi, {K} có một bữa tiệc thân mật muốn mời các bạn.';
+        'Nhân dịp sinh nhật 18 tuổi, {K} có một bữa tiệc thân mật muốn mời bạn - một mảnh ghép đặc biệt ấy.';
       const parts = [{ t: 'Xin chào ' }, { t: guestName, nm: true }];
       script.split('{K}').forEach((seg, i, arr) => { parts.push({ t: seg }); if (i < arr.length - 1) parts.push({ t: 'Minh Khôi', nm: true }); });
       const frag = document.createDocumentFragment();
