@@ -197,8 +197,13 @@
 <body>
 
   <!-- Nhạc nền: lấy từ âm thanh của video thiệp, nhúng sẵn trong file. Muốn đổi bài: thay src bằng đường dẫn file mp3 khác. -->
-  <audio id="bgm" class="song" loop preload="auto" src="goldenhour.m4a"></audio>  
-  
+  <!-- Nhạc nền: đặt file goldenhour.m4a cùng thư mục với file HTML này -->
+  <audio id="bgm" class="song" loop preload="auto" src="goldenhour.m4a"></audio>
+  <button id="muteBtn" type="button" aria-label="Bật/tắt nhạc" title="Bật/tắt nhạc">♪</button>
+  <audio id="applauseSound">
+    <source src="https://assets.mixkit.co/active_storage/sfx/354/354-preview.mp3" type="audio/mpeg">
+  </audio>
+
   <div class="cinematic-bars bar-top"></div>
   <div class="cinematic-bars bar-bottom"></div>
 
@@ -269,7 +274,8 @@
       startMusic();
       if (!bgm.paused) ['pointerdown', 'touchstart', 'keydown', 'click'].forEach(e2 => window.removeEventListener(e2, once, true));
     }, true));
-    document.getElementById('muteBtn').addEventListener('click', (e) => {
+    const muteBtnEl = document.getElementById('muteBtn');
+    if (muteBtnEl) muteBtnEl.addEventListener('click', (e) => {
       e.stopPropagation();
       bgm.muted = !bgm.muted;
       e.currentTarget.classList.toggle('off', bgm.muted);
@@ -345,7 +351,7 @@
           .to('.curtain-left', { duration: 2.5, x: '-100%', ease: 'power3.inOut' }, '-=0.2')
           .to('.curtain-right', { duration: 2.5, x: '100%', ease: 'power3.inOut' }, '-=2.5')
           .to('.theater-overlay', { duration: .5, backgroundColor: 'transparent' }, '-=1')
-          .add(() => { document.getElementById('applauseSound').play().catch(() => {}); fireGrandOpening(); }, '-=1.5')
+          .add(() => { const ap = document.getElementById('applauseSound'); if (ap) ap.play().catch(() => {}); fireGrandOpening(); }, '-=1.5')
           .to('#stageEffects', { duration: 2, opacity: 1 }, '-=1.5');
       });
     });
